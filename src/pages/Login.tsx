@@ -8,6 +8,7 @@ import {
   Box,
   Alert,
 } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import { authApi } from '../api/auth';
 import { User } from '../App';
 
@@ -16,6 +17,7 @@ interface LoginProps {
 }
 
 function Login({ onLogin }: LoginProps) {
+  const navigate = useNavigate();
   const [lotNumber, setLotNumber] = useState('');
   const [pin, setPin] = useState('');
   const [error, setError] = useState('');
@@ -85,6 +87,14 @@ function Login({ onLogin }: LoginProps) {
             disabled={loading}
           >
             {loading ? 'Entrando...' : 'Entrar'}
+          </Button>
+          <Button
+            variant="text"
+            fullWidth
+            sx={{ mt: 1 }}
+            onClick={() => navigate('/register')}
+          >
+            ¿No tienes cuenta? Registra tu casa
           </Button>
         </Box>
       </Paper>
