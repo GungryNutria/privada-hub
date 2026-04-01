@@ -16,22 +16,19 @@ import {
   DialogContent,
   DialogActions,
   TextField,
-  Alert,
   Tab,
   Tabs,
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate } from 'react-router-dom';
-import { User } from '../App';
 import { housesApi, House } from '../api/houses';
 import { reservationsApi, Reservation } from '../api/reservations';
 
 interface AdminPanelProps {
-  user: User;
   onLogout: () => void;
 }
 
-function AdminPanel({ user }: AdminPanelProps) {
+function AdminPanel({ onLogout }: AdminPanelProps) {
   const navigate = useNavigate();
   const [tab, setTab] = useState(0);
   const [houses, setHouses] = useState<House[]>([]);
@@ -64,11 +61,6 @@ function AdminPanel({ user }: AdminPanelProps) {
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleUpdateOwner = async (houseId: number, ownerName: string) => {
-    // TODO: Implementar actualización de propietario
-    console.log('Update owner', houseId, ownerName);
   };
 
   const filteredHouses = houses.filter(h => 

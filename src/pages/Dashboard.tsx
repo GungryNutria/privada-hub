@@ -33,7 +33,6 @@ interface DashboardProps {
 function Dashboard({ user, onLogout }: DashboardProps) {
   const theme = useTheme();
   const [reservations, setReservations] = useState<Reservation[]>([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   
@@ -54,15 +53,12 @@ function Dashboard({ user, onLogout }: DashboardProps) {
 
   const loadReservations = async () => {
     try {
-      setLoading(true);
       setError('');
       const data = await reservationsApi.getByMonth(year, month);
       setReservations(data.filter((r: Reservation) => r.status === 'active'));
     } catch (err: unknown) {
       const e = err as { response?: { data?: { message?: string } } };
       setError(e?.response?.data?.message || 'Error al cargar datos');
-    } finally {
-      setLoading(false);
     }
   };
 
