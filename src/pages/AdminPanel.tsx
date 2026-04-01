@@ -24,11 +24,7 @@ import { useNavigate } from 'react-router-dom';
 import { housesApi, House } from '../api/houses';
 import { reservationsApi, Reservation } from '../api/reservations';
 
-interface AdminPanelProps {
-  onLogout: () => void;
-}
-
-function AdminPanel({ onLogout }: AdminPanelProps) {
+function AdminPanel() {
   const navigate = useNavigate();
   const [tab, setTab] = useState(0);
   const [houses, setHouses] = useState<House[]>([]);

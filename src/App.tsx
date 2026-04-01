@@ -63,7 +63,7 @@ function App() {
         path="/admin"
         element={
           user ? (
-            <AdminPanel user={user} onLogout={handleLogout} />
+            <AdminPanel />
           ) : (
             <Navigate to="/login" replace />
           )
